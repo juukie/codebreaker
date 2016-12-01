@@ -30,7 +30,7 @@ class Codebreaker
         }
 
         if (! $this->codeIsValid($guess)) {
-            return 'My code only has numbers below ' . ($this->maxNumber + 1) . '!';
+            throw new InvalidArgumentException('My code only has numbers below ' . ($this->maxNumber + 1) . '!');
         }
 
         if ($this->isGuessedBefore($guess)) {

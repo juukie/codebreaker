@@ -3,6 +3,7 @@
 namespace spec\App;
 
 use App\Codebreaker;
+use App\InvalidArgumentException;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -20,7 +21,9 @@ class CodebreakerSpec extends ObjectBehavior
 
     function it_validates_the_guess()
     {
-        $this->check('4557')->shouldReturn('My code only has numbers below 7!');
+        $this->shouldThrow(
+            new InvalidArgumentException('My code only has numbers below 7!')
+        )->duringCheck('4557');
     }
 
     function it_matches_correct_for_no_matches()
@@ -72,7 +75,6 @@ class CodebreakerSpec extends ObjectBehavior
     function it_provides_the_history_of_guesses()
     {
         $this->check('4554');
-        $this->check('3027');
         $this->check('3025');
         $this->check('0132');
         $this->guesses()->shouldReturn([
