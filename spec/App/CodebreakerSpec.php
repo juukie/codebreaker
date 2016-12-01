@@ -83,4 +83,31 @@ class CodebreakerSpec extends ObjectBehavior
             '0132' => '++--',
         ]);
     }
+
+    function it_would_be_solved_if_corne_guessed_5015()
+    {
+        $this->beConstructedWith('5015');
+
+        foreach ([
+            '5555' => '+--+',
+            '1551' => '----',
+            '5511' => '+-+-',
+            '1155' => '---+',
+            '5151' => '+---',
+            '5115' => '+-++',
+            '1515' => '--++',
+            '1315' => '-++',
+            '5314' => '++',
+            '5321' => '+-',
+            '5311' => '++-',
+            '5310' => '++-',
+            '5316' => '++',
+            '5315' => '+++',
+            '3113' => '-+',
+            '3511' => '-+-',
+            '2641' => '-',
+        ] as $guess => $result) {
+            $this->check($guess)->shouldReturn($result);
+        };
+    }
 }
